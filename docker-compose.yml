@@ -1,10 +1,12 @@
 version: "3.9"
 
+name: mina
 services:
-    serve:
+    dev:
         build:
             context: .
             dockerfile: Dockerfile
         restart: unless-stopped
         volumes:
             - ./app:/app
+            - ./home:/root
