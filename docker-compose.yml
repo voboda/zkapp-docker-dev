@@ -2,11 +2,15 @@ version: "3.9"
 
 name: mina
 services:
-    dev:
-        build:
-            context: .
-            dockerfile: Dockerfile
-        restart: unless-stopped
-        volumes:
-            - ./app:/app
-            - ./home:/root
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    command: code-server --user-data-dir /home/coder/project --bind-addr 0.0.0.0:8080
+    ports:
+      - 8080:8080
+    volumes:
+      - "./project:/home/coder/project"
+      - "./ssh:/home/coder/.ssh"
+      - "./config:/home/coder/.config"
